@@ -32,7 +32,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = this.username;
     }
 
     public String getEmail() {
@@ -40,7 +40,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = this.email;
     }
 
     public String getPassword() {
@@ -48,14 +48,14 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = this.password;
     }
 
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Timestamp from) {
         this.createdAt = createdAt;
     }
 }
