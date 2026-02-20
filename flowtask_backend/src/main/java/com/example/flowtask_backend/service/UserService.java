@@ -55,21 +55,20 @@ public class UserService {
         }
     }
 
-    public User obtenerTodosUsuarios(){
+    public List<User> obtenerTodosUsuarios(){
         List<User>listUsers=userRepository.findAll();
         return listUsers;
     }
 
-    public User eliminarUsuario(Long id){
+    public void eliminarUsuario(Long id){
         Optional<User> optionalUser= userRepository.findById(id);
 
         if(optionalUser.isPresent()){
-            User user= optionalUser.get();
             userRepository.deleteById(id);
         }else {
          System.out.println("No se ha encontrado el usuario con ese id");
         }
-        return null;
+        return ;
     }
 
     public User actualizarUsuario(Long id, String username, String email, String password){
