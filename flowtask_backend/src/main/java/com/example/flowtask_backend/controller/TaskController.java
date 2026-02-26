@@ -40,7 +40,7 @@ public class TaskController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Task>obtenerTareasPorUsuario(Long userId){
+    public List<Task>obtenerTareasPorUsuario(@PathVariable  Long userId){
 
         List<Task> tasks=taskService.obtenerTareasPorUsuario(userId);
         return tasks;
