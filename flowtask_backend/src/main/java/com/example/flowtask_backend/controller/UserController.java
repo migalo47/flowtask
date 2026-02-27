@@ -1,6 +1,7 @@
 package com.example.flowtask_backend.controller;
 
 import com.example.flowtask_backend.dto.UserRequest;
+import com.example.flowtask_backend.dto.UserResponse;
 import com.example.flowtask_backend.entity.User;
 import com.example.flowtask_backend.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,15 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-     public User obtenerUsuarioPorId(@PathVariable Long id){
+     public UserResponse obtenerUsuarioPorId(@PathVariable Long id){
         User user=userService.obtenerUsuarioPorId(id);
-        return user;
+        if (user ==null)
+            return null;
+        UserResponse userDTO=new UserResponse();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        return userDTO;
     }
 
     @GetMapping("/correo/{email}")
