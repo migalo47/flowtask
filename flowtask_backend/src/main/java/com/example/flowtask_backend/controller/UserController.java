@@ -19,11 +19,15 @@ public class UserController {
     }
 
     @PostMapping("")
-    public User crearUsuario(@RequestBody UserRequest request){
+    public UserResponse crearUsuario(@RequestBody UserRequest request){
         User user = userService.crearUsuario(
                 request.getUsername(),request.getEmail(),request.getPassword()
         );
-        return user;
+        UserResponse userDTO=new UserResponse();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        return userDTO;
     }
 
     @GetMapping("{id}")
@@ -39,9 +43,13 @@ public class UserController {
     }
 
     @GetMapping("/correo/{email}")
-    public User obtenerUsuarioPorCorreo(@PathVariable String email){
+    public UserResponse obtenerUsuarioPorCorreo(@PathVariable String email){
         User user= userService.obtenerUsuarioPorCorreo(email);
-        return user;
+        UserResponse userDTO=new UserResponse();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        return userDTO;
     }
 
     @GetMapping("")
@@ -57,8 +65,14 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    public User actualizarUsuario(@PathVariable Long id,@RequestBody UserRequest request){
+    public UserResponse actualizarUsuario(@PathVariable Long id,@RequestBody UserRequest request){
         User user=userService.actualizarUsuario(id, request.getUsername(), request.getEmail(), request.getPassword());
-        return user;
+        UserResponse userDTO=new UserResponse();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        return userDTO;
     }
+
+
 }
