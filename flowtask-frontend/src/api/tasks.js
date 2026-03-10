@@ -1,8 +1,7 @@
-// src/api/tasks.js
 import api from "./axiosConfig";
 
-export const getTasks = async () => {
-  const res = await api.get("/tasks");
+export const getTasksByUser = async (userId) => {
+  const res = await api.get(`/tasks/user/${userId}`);
   return res.data;
 };
 

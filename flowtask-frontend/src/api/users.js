@@ -1,20 +1,11 @@
 import api from "./axiosConfig";
 
-export const getUsers = async () => {
-  const res = await api.get("/users");
+export const registerUser = async (user) => {
+  const res = await api.post("/users", user);
   return res.data;
 };
 
-export const createUser = async (task) => {
-  const res = await api.post("/users", task);
+export const getUserByEmail = async (email) => {
+  const res = await api.get(`/users/correo/${email}`);
   return res.data;
-};
-
-export const updateUser = async (id, user) => {
-  const res = await api.put(`/users/${id}`, user);
-  return res.data;
-};
-
-export const deleteUser = async (id) => {
-  await api.delete(`/users/${id}`);
 };
