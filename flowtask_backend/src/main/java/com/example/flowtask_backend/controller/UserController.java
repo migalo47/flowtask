@@ -32,6 +32,7 @@ public class UserController {
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
+
         return userDTO;
     }
 

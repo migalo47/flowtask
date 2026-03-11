@@ -26,8 +26,13 @@ public class UserService {
         user.setEmail(email);
         user.setPassword(password);
         user.setCreatedAt(Timestamp.from(Instant.now()));
+        Optional<User> optionalUser=userRepository.findByEmail(email);
+        if(optionalUser.isPresent()){
+            throw new IllegalArgumentException("Email ya registrado...");
+        }else{
+            userRepository.save(user);
+        }
 
-        userRepository.save(user);
 
         return user;
     }
