@@ -21,6 +21,14 @@ export default function TaskList({ userId }) {
     fetchTasks();
   }
 
+  const getStatusColor=(status)=>{
+
+    if(status==="TODO") return "bg-gray-200 text-gray-700";
+    if(status==="IN_PROGRESS") return "bg-yellow-200 text-yellow-800";
+    if(status==="DONE") return "bg-green-200 text-green-800";
+
+  }
+
   return(
 
     <div>
@@ -34,44 +42,60 @@ export default function TaskList({ userId }) {
         }}
       />
 
-      <h2>Mis tareas</h2>
+      <h2 className="text-2xl font-bold mb-6">
+        Mis tareas
+      </h2>
 
-      <table border="1">
+      <div className="grid md:grid-cols-2 gap-6">
 
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        {tasks.map(task=>(
 
-        <tbody>
+          <div
+            key={task.id}
+            className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition"
+          >
 
-          {tasks.map(task=>(
-            <tr key={task.id}>
+            <div className="flex justify-between items-center mb-2">
 
-              <td>{task.title}</td>
-              <td>{task.status}</td>
+              <h3 className="text-lg font-semibold">
+                {task.title}
+              </h3>
 
-              <td>
+              <span
+                className={`px-3 py-1 rounded-full text-sm ${getStatusColor(task.status)}`}
+              >
+                {task.status}
+              </span>
 
-                <button onClick={()=>setTaskToEdit(task)}>
-                  Edit
-                </button>
+            </div>
 
-                <button onClick={()=>handleDelete(task.id)}>
-                  Delete
-                </button>
+            <p className="text-gray-600 mb-4">
+              {task.description}
+            </p>
 
-              </td>
+            <div className="flex gap-3">
 
-            </tr>
-          ))}
+              <button
+                onClick={()=>setTaskToEdit(task)}
+                className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+              >
+                Editar
+              </button>
 
-        </tbody>
+              <button
+                onClick={()=>handleDelete(task.id)}
+                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+              >
+                Eliminar
+              </button>
 
-      </table>
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
 
     </div>
 

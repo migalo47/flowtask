@@ -3,32 +3,52 @@ import { AuthContext } from "../context/AuthContext";
 import TaskList from "../components/TaskList";
 import { useNavigate } from "react-router-dom";
 
-export default function TasksPage() {
+export default function TasksPage(){
 
-  const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const {user,logout}=useContext(AuthContext);
+  const navigate=useNavigate();
 
-  if (!user) {
+  if(!user){
     navigate("/");
     return null;
   }
 
-  const handleLogout = () => {
+  const handleLogout=()=>{
     logout();
     navigate("/");
-  };
+  }
 
-  return (
-    <div>
+  return(
 
-      <h1>Hola {user.username}</h1>
+    <div className="min-h-screen bg-gray-100 p-10">
 
-      <button onClick={handleLogout}>
-        Logout
-      </button>
+      <div className="max-w-4xl mx-auto">
 
-      <TaskList userId={user.id} />
+        <div className="flex justify-between items-center mb-6">
+
+          <h1 className="text-2xl font-bold">
+            Hola {user.username}
+          </h1>
+
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 text-white px-4 py-2 rounded-lg"
+          >
+            Logout
+          </button>
+
+        </div>
+
+        <div className="bg-white p-6 rounded-xl shadow">
+
+          <TaskList userId={user.id}/>
+
+        </div>
+
+      </div>
 
     </div>
-  );
+
+  )
+
 }

@@ -5,66 +5,80 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function LoginPage() {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
 
-  const { login } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const {login}=useContext(AuthContext);
+  const navigate=useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin=async(e)=>{
     e.preventDefault();
 
-    try {
+    try{
 
-      const user = await getUserByEmail(email);
+      const user=await getUserByEmail(email);
 
-      if (!user) {
+      if(!user){
         alert("Usuario no encontrado");
         return;
       }
 
       login(user);
-
       navigate("/tasks");
 
-    } catch (error) {
+    }catch{
       alert("Error en login");
     }
-  };
 
-  return (
-    <div>
+  }
 
-      <h1>Login</h1>
+  return(
 
-      <form onSubmit={handleLogin}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
-        />
+      <div className="bg-white p-10 rounded-2xl shadow-xl w-96">
 
-        <br/>
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-700">
+          FlowTask
+        </h1>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
-        />
+        <form onSubmit={handleLogin} className="space-y-4">
 
-        <br/>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+            className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
 
-        <button type="submit">Login</button>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
+            className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
 
-      </form>
+          <button
+            className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
+          >
+            Login
+          </button>
 
-      <p>
-        No tienes cuenta? <Link to="/register">Registrarse</Link>
-      </p>
+        </form>
+
+        <p className="text-center mt-4 text-sm">
+          No tienes cuenta?{" "}
+          <Link to="/register" className="text-blue-500">
+            Registrarse
+          </Link>
+        </p>
+
+      </div>
 
     </div>
-  );
+
+  )
+
 }

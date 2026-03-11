@@ -8,17 +8,14 @@ export default function TaskForm({ userId, taskToEdit, onSuccess }) {
   const [status,setStatus]=useState("TODO");
 
   useEffect(()=>{
-
     if(taskToEdit){
       setTitle(taskToEdit.title);
       setDescription(taskToEdit.description);
       setStatus(taskToEdit.status);
     }
-
   },[taskToEdit]);
 
   const handleSubmit=async(e)=>{
-
     e.preventDefault();
 
     const taskData={
@@ -39,44 +36,47 @@ export default function TaskForm({ userId, taskToEdit, onSuccess }) {
     setStatus("TODO");
 
     onSuccess();
-
   }
 
   return(
 
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gray-50 p-6 rounded-xl shadow mb-8 space-y-4"
+    >
 
-      <h3>{taskToEdit?"Editar":"Nueva tarea"}</h3>
+      <h3 className="text-xl font-semibold">
+        {taskToEdit ? "Editar tarea" : "Nueva tarea"}
+      </h3>
 
       <input
-        placeholder="Title"
+        placeholder="Título"
         value={title}
         onChange={(e)=>setTitle(e.target.value)}
+        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400"
       />
-
-      <br/>
 
       <textarea
-        placeholder="Description"
+        placeholder="Descripción"
         value={description}
         onChange={(e)=>setDescription(e.target.value)}
+        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400"
       />
-
-      <br/>
 
       <select
         value={status}
         onChange={(e)=>setStatus(e.target.value)}
+        className="w-full border rounded-lg p-2"
       >
-        <option value="TODO">TODO</option>
-        <option value="IN_PROGRESS">IN_PROGRESS</option>
-        <option value="DONE">DONE</option>
+        <option value="TODO">Pendiente</option>
+        <option value="IN_PROGRESS">En progreso</option>
+        <option value="DONE">Completada</option>
       </select>
 
-      <br/>
-
-      <button type="submit">
-        {taskToEdit?"Update":"Create"}
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+      >
+        {taskToEdit ? "Actualizar" : "Crear tarea"}
       </button>
 
     </form>
