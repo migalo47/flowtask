@@ -2,7 +2,7 @@ import { useState } from "react";
 import { registerUser } from "../api/users";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function RegisterPage(){
+export default function RegisterPage() {
 
   const [username,setUsername]=useState("");
   const [email,setEmail]=useState("");
@@ -25,7 +25,7 @@ export default function RegisterPage(){
 
       navigate("/");
 
-    }catch{
+    }catch(error){
       alert("Error creando usuario");
     }
 
@@ -33,11 +33,11 @@ export default function RegisterPage(){
 
   return(
 
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-purple-300">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
-      <div className="bg-white p-10 rounded-2xl shadow-xl w-96">
+      <div className="bg-white p-10 rounded-2xl shadow-2xl w-96">
 
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-700">
+        <h1 className="text-3xl font-bold text-center mb-6">
           Crear cuenta
         </h1>
 
@@ -47,14 +47,14 @@ export default function RegisterPage(){
             placeholder="Username"
             value={username}
             onChange={(e)=>setUsername(e.target.value)}
-            className="w-full border rounded-lg p-2"
+            className="w-full border p-3 rounded-lg"
           />
 
           <input
             placeholder="Email"
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
-            className="w-full border rounded-lg p-2"
+            className="w-full border p-3 rounded-lg"
           />
 
           <input
@@ -62,20 +62,20 @@ export default function RegisterPage(){
             placeholder="Password"
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
-            className="w-full border rounded-lg p-2"
+            className="w-full border p-3 rounded-lg"
           />
 
           <button
-            className="w-full bg-purple-500 text-white p-2 rounded-lg hover:bg-purple-600 transition"
+            className="w-full bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition"
           >
-            Register
+            Crear cuenta
           </button>
 
         </form>
 
-        <p className="text-center mt-4 text-sm">
+        <p className="text-center text-sm text-gray-500 mt-6">
           Ya tienes cuenta?{" "}
-          <Link to="/" className="text-purple-500">
+          <Link to="/" className="text-purple-600 font-semibold">
             Login
           </Link>
         </p>
