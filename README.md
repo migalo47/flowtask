@@ -95,7 +95,7 @@ DELETE /api/tasks/{id}
 ## 1️⃣ Clonar repositorio
 
 ```
-git clone https://github.com/tu-usuario/flowtask.git
+git clone https://github.com/migalo47/flowtask.git
 ```
 
 ---
